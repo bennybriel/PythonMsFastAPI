@@ -121,4 +121,20 @@ public class RegistrationService {
     {
         return  reqistrationRepository.getUGDRegistrationByEmail(email);
     }
+    public List<RegistrationDisplayInterface> filterPGRegistrationByState(String state)
+    {
+        return reqistrationRepository.filterPGRegistrationByState(state);
+    }
+    public List<RegistrationDisplayInterface> filterPGRegistrationByStateSession(String state, String ses)
+    {
+        return reqistrationRepository.filterPGRegistrationByStateSession(state,ses);
+    }
+    public List<RegistrationDisplayInterface> filterUGDRegistrationByStateAdmissionType(String admtype, String state)
+    {
+        return reqistrationRepository.filterUGDRegistrationStateAdmissionType(admtype,state);
+    }
+    public List<RegistrationDisplayInterface> filterUGDRegistrationByState(String state)
+    {
+        return reqistrationRepository.filterUGDRegistrationByState(state);
+    }
 }

@@ -82,5 +82,31 @@ public class RegistrationController
         return registrationService.getUGDUserRegistrationByEmail(email);
     }
 
+    @RequestMapping("/api/v1/filterUserPGRegistrationByState/{state}")
+    public List<RegistrationDisplayInterface> getPGegistrationByState(@PathVariable String state)
+    {
+        return registrationService.filterPGRegistrationByState(state);
+    }
+
+    @RequestMapping("/api/v1/filterUserPGRegistrationByStateSession")
+    @PostMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<RegistrationDisplayInterface> getPGegistrationByStateSession(@RequestBody FilterStateSessionRequest filterStateSessionRequest)
+    {
+        return registrationService.filterPGRegistrationByStateSession(filterStateSessionRequest.getState(), filterStateSessionRequest.getSession());
+    }
+    @RequestMapping("/api/v1/filterUserUGDRegistrationByStateAdmissionType")
+    @PostMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<RegistrationDisplayInterface> getUGDegistrationByStateSession(@RequestBody FilterStateAdmissionTypeRequest filterStateAdmissionTypeRequest)
+    {
+        return registrationService.filterUGDRegistrationByStateAdmissionType(filterStateAdmissionTypeRequest.getAdmissiontype(), filterStateAdmissionTypeRequest.getState());
+    }
+    @RequestMapping("/api/v1/filterUserUGDRegistrationByState/{state}")
+    public List<RegistrationDisplayInterface> getUGDegistrationByState(@PathVariable String state)
+    {
+        return registrationService.filterUGDRegistrationByState(state);
+    }
+
 }
 

@@ -18,19 +18,36 @@ public interface ReqistrationRepository extends JpaRepository<Registrations, Str
 
     @Query(value = "SELECT rg.*, pg.programme, pg.degree FROM u_g_pre_admission_regs rg INNER JOIN pgprogramme pg ON rg.category1 = pg.programmeid WHERE rg.admissiontype=:admtype", nativeQuery = true)
     List<RegistrationDisplayInterface> fetchRegistrationByAdmissionType(@Param("admtype") String admtype);
-
+    /*
+     * FILTER BY UTME STATE
+     * */
     @Query(value = "SELECT rg.*, ad.name as programme FROM u_g_pre_admission_regs rg INNER JOIN admissionprogrammes ad ON rg.category1 = ad.programmeid WHERE rg.session=:ses AND  rg.admissiontype=:admtype", nativeQuery = true)
     List<RegistrationDisplayInterface> fetchUGDRegistration(@Param("ses") String ses, @Param("admtype") String admtype);
 
     @Query(value = "SELECT rg.*, ad.name as programme FROM u_g_pre_admission_regs rg INNER JOIN admissionprogrammes ad ON rg.category1 = ad.programmeid WHERE rg.email=:email", nativeQuery = true)
     RegistrationDisplayInterface getUGDRegistrationByEmail(@Param("email") String email);
 
+    @Query(value = "SELECT rg.*, ad.name as programme FROM u_g_pre_admission_regs rg INNER JOIN admissionprogrammes ad ON rg.category1 = ad.programmeid WHERE admissiontype=:admtype AND  state=:state", nativeQuery = true)
+    List<RegistrationDisplayInterface> filterUGDRegistrationStateAdmissionType(@Param("admtype") String admtype, @Param("state") String state);
+
+    @Query(value = "SELECT rg.*, ad.name as programme FROM u_g_pre_admission_regs rg INNER JOIN admissionprogrammes ad ON rg.category1 = ad.programmeid WHERE (rg.admissiontype='DE' OR rg.admissiontype='UTME' OR rg.admissiontype='UGD') AND state=:state", nativeQuery = true)
+    List<RegistrationDisplayInterface> filterUGDRegistrationByState(@Param("state") String state);
+    /*
+    * FILTER BY PG STATE
+    * */
+    @Query(value = "SELECT rg.*, pg.programme, pg.degree FROM u_g_pre_admission_regs rg INNER JOIN pgprogramme pg ON " +
+            "rg.category1 = pg.programmeid WHERE rg.state=:state AND admissiontype='PG'", nativeQuery = true)
+    List<RegistrationDisplayInterface> filterPGRegistrationByState(@Param("state") String state);
+
+    @Query(value = "SELECT rg.*, pg.programme, pg.degree FROM u_g_pre_admission_regs rg INNER JOIN pgprogramme pg ON " +
+            "rg.category1 = pg.programmeid WHERE rg.state=:state AND admissiontype='PG' AND session=:ses", nativeQuery = true)
+    List<RegistrationDisplayInterface> filterPGRegistrationByStateSession(@Param("state") String state, @Param("ses") String ses);
+
     @Query(value = "SELECT rg.*, pg.programme, pg.degree FROM u_g_pre_admission_regs rg INNER JOIN pgprogramme pg ON rg.category1 = pg.programmeid WHERE rg.session=:ses", nativeQuery = true)
     List<RegistrationDisplayInterface> fetchPGRegistration(@Param("ses") String ses);
 
     @Query(value = "SELECT rg.*, pg.programme, pg.degree FROM u_g_pre_admission_regs rg INNER JOIN pgprogramme pg ON rg.category1 = pg.programmeid WHERE rg.email=:email", nativeQuery = true)
     RegistrationDisplayInterface getPGRegistrationByEmail(@Param("email") String email);
-
 
     @Modifying(clearAutomatically = true)
     @Transactional
