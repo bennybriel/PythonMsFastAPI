@@ -23,7 +23,6 @@ public interface ReqistrationRepository extends JpaRepository<Registrations, Str
      * */
     @Query(value = "SELECT rg.*, ad.name as programme FROM u_g_pre_admission_regs rg INNER JOIN admissionprogrammes ad ON rg.category1 = ad.programmeid WHERE rg.session=:ses AND  rg.admissiontype=:admtype", nativeQuery = true)
     List<RegistrationDisplayInterface> fetchUGDRegistration(@Param("ses") String ses, @Param("admtype") String admtype);
-
     @Query(value = "SELECT rg.*, ad.name as programme FROM u_g_pre_admission_regs rg INNER JOIN admissionprogrammes ad ON rg.category1 = ad.programmeid WHERE rg.email=:email", nativeQuery = true)
     RegistrationDisplayInterface getUGDRegistrationByEmail(@Param("email") String email);
 
