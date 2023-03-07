@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -136,5 +137,30 @@ public class RegistrationService {
     public List<RegistrationDisplayInterface> filterUGDRegistrationByState(String state)
     {
         return reqistrationRepository.filterUGDRegistrationByState(state);
+    }
+    public List<RegistrationDisplayInterface> filterUGDRegistrationByStateSesion(String state, String ses)
+    {
+        return reqistrationRepository.filterUGDRegistrationStateSession(state,ses);
+    }
+    public int UpdateStateLga(String email, String lga, String state)
+    {
+        return reqistrationRepository.UpdateStateLga(email, lga, state);
+    }
+
+    public int UpdateRegistrationInfo(String email, String phone,  String category, String mat)
+    {
+        return reqistrationRepository.UpdateRegistrationInfo(email, phone,category,mat);
+    }
+    public List<RegistrationDisplayInterface>fetchRegistrationByAdmissionYear(String admyear)
+    {
+        return reqistrationRepository.fetchRegistrationByAdmissionYear(admyear);
+    }
+    public List<RegistrationDisplayInterface>fetchRegistrationByAdmissionYearSession(String admyear, String ses)
+    {
+        return reqistrationRepository.fetchRegistrationByAdmissionYearSession(admyear, ses);
+    }
+    public List<RegistrationDisplayInterface>fetchRegistrationByAdmissionYearSessionAdmType(String admyear, String ses, String admtype)
+    {
+        return reqistrationRepository.fetchRegistrationByAdmissionYearSessionAdmType(admyear, ses, admtype);
     }
 }

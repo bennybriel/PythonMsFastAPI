@@ -108,5 +108,52 @@ public class RegistrationController
         return registrationService.filterUGDRegistrationByState(state);
     }
 
+    @RequestMapping("/api/v1/filterUserUGDRegistrationByStateSession")
+    @PostMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<RegistrationDisplayInterface> getUGDegistrationByStateSession(@RequestBody FilterStateSessionRequest filterStateSessionRequest)
+    {
+        return registrationService.filterUGDRegistrationByStateSesion(filterStateSessionRequest.getState(), filterStateSessionRequest.getSession());
+    }
+    @RequestMapping("/api/v1/updateStateLga")
+    @PostMapping
+    @ResponseStatus(HttpStatus.OK)
+    public int updateUserStateLga(@RequestBody UpdateStateLgaRequest updateStateLgaRequest)
+    {
+        return  registrationService.UpdateStateLga(updateStateLgaRequest.getEmail(),updateStateLgaRequest.getLga(), updateStateLgaRequest.getState());
+    }
+
+    @RequestMapping("/api/v1/updateUserRegistrationInfo")
+    @PostMapping
+    @ResponseStatus(HttpStatus.OK)
+    public int updateURegistrationInfo(@RequestBody UpdateRegistrationRequest updateRegistrationRequest)
+    {
+        return  registrationService.UpdateRegistrationInfo(updateRegistrationRequest.getEmail(),
+                updateRegistrationRequest.getPhone(),updateRegistrationRequest.getCategory(), updateRegistrationRequest.getMatric());
+    }
+
+    @RequestMapping("/api/v1/fetchRegistrationByAdmissionYear/{admyear}")
+    public List<RegistrationDisplayInterface> fetchRegistrationByAdmissionYear(@PathVariable String admyear)
+    {
+        return registrationService.fetchRegistrationByAdmissionYear(admyear);
+    }
+
+    @RequestMapping("/api/v1/fetchRegistrationByAdmissionYearSession")
+    @PostMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<RegistrationDisplayInterface> fetchRegistrationByAdmissionYearSession(@RequestBody RegistrationAdmYearSessionRequest registrationAdmYearSessionRequest)
+    {
+        return registrationService.fetchRegistrationByAdmissionYearSession(registrationAdmYearSessionRequest.getAdmissionyear(), registrationAdmYearSessionRequest.getSession());
+    }
+
+    @RequestMapping("/api/v1/fetchRegistrationByAdmissionYearSessionType")
+    @PostMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<RegistrationDisplayInterface> fetchRegistrationByAdmissionYearSessionType(@RequestBody fetchRegAdmyearSessionTypeRequest fetchRegAdmyearSessionTypeRequest)
+    {
+        return registrationService.fetchRegistrationByAdmissionYearSessionAdmType(fetchRegAdmyearSessionTypeRequest.getAdmissionyear(), fetchRegAdmyearSessionTypeRequest.getSession(),
+                fetchRegAdmyearSessionTypeRequest.getAdmissiontype());
+    }
+
 }
 

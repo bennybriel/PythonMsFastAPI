@@ -28,7 +28,7 @@ public class Registrations {
     private String surname;
     private String firstname;
     private String othername;
-    private  String email;
+    private String email;
     private String state;
     private String lga;
     private String guid;
