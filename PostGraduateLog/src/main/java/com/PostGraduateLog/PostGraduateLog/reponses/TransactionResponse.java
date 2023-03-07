@@ -1,4 +1,4 @@
-package com.PostGraduateLog.PostGraduateLog.dto;
+package com.PostGraduateLog.PostGraduateLog.reponses;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

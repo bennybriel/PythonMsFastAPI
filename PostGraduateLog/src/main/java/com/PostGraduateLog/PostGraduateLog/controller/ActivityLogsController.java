@@ -1,8 +1,8 @@
 package com.PostGraduateLog.PostGraduateLog.controller;
 
-import com.PostGraduateLog.PostGraduateLog.dto.ActivityLogResponse;
+import com.PostGraduateLog.PostGraduateLog.reponses.ActivityLogResponse;
 import com.PostGraduateLog.PostGraduateLog.dto.ActivityRequest;
-import com.PostGraduateLog.PostGraduateLog.dto.UsersResponse;
+import com.PostGraduateLog.PostGraduateLog.reponses.UsersResponse;
 import com.PostGraduateLog.PostGraduateLog.service.ActivityLogService;
 import com.PostGraduateLog.PostGraduateLog.service.UsersService;
 import io.swagger.v3.oas.annotations.tags.Tag;

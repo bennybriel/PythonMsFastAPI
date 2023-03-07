@@ -28,6 +28,7 @@ public class Registrations {
     private String surname;
     private String firstname;
     private String othername;
+    private  String email;
     private String state;
     private String lga;
     private String guid;
@@ -59,7 +60,7 @@ public class Registrations {
     private String sphone;
     private String semail;
     private String admissionyear;
-    private String admissiotype;
+    private String admissiontype;
     private Integer programmeid;
     private Integer departmentid;
     private Integer level;

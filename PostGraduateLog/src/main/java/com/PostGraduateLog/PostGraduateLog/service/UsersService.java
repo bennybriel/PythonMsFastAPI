@@ -1,12 +1,11 @@
 package com.PostGraduateLog.PostGraduateLog.service;
 
-import com.PostGraduateLog.PostGraduateLog.dto.UserApptypeJoinReponses;
+import com.PostGraduateLog.PostGraduateLog.reponses.UserApptypeJoinReponses;
 import com.PostGraduateLog.PostGraduateLog.dto.UserApptypeJoinRequest;
-import com.PostGraduateLog.PostGraduateLog.dto.UsersResponse;
+import com.PostGraduateLog.PostGraduateLog.reponses.UsersResponse;
 import com.PostGraduateLog.PostGraduateLog.model.Users;
-import com.PostGraduateLog.PostGraduateLog.repository.UserDisplayInterface;
+import com.PostGraduateLog.PostGraduateLog.interfaces.UserDisplayInterface;
 import com.PostGraduateLog.PostGraduateLog.repository.UsersRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,7 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import javax.swing.plaf.PanelUI;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -28,6 +26,10 @@ public class UsersService {
         List<Users> users =  usersRepository.findAll();
         return users.stream().map(user -> mapToReportResponse(user)).toList();
     }
+    public Users getUsersByEmail(String email)
+    {
+        return  usersRepository.findByEmail(email);
+    }
     public List<UsersResponse> getUsersByProgramme(String prog)
     {
         return  usersRepository.findByApptype(prog).stream()
@@ -38,7 +40,6 @@ public class UsersService {
         return  usersRepository.findByActivesession(sess).stream()
                 .map(user -> mapToReportResponse(user)).toList();
     }
-
     public List<UsersResponse> getUsersByAppTypeAndSession(String prog, String sess)
     {
         return  usersRepository.findByApptypeAndActivesession(sess,prog).stream()
@@ -80,8 +81,9 @@ public class UsersService {
                 .build();
     }
 
-    public Page<Users> getUserPagination(Integer pageNumber, Integer pageSize, String sortProperty) {
-//        Sort sort = Sort.by(Sort.Direction.ASC,"name");
+    public Page<Users> getUserPagination(Integer pageNumber, Integer pageSize, String sortProperty)
+    {
+        //Sort sort = Sort.by(Sort.Direction.ASC,"name");
         Pageable pageable= null;
         if(null!=sortProperty)
         {
@@ -93,7 +95,10 @@ public class UsersService {
         }
         return usersRepository.findAll(pageable);
     }
-
+    public UserDisplayInterface getUserByRegistration(String email)
+    {
+        return  usersRepository.findUserRegistrationByEmail(email);
+    }
     public List<Users> userByApptype(String appt)
     {
         Sort sort = Sort.by(Sort.Direction.ASC,"firstname");
@@ -107,7 +112,21 @@ public class UsersService {
     {
         return   usersRepository.findDataByApptypeSession(appt, sess);
     }
+    public int UpdateUserSession(String ses, String mat)
+    {
+       return usersRepository.UpdateUserSession(ses, mat);
+    }
 
+    public int UpdateUsersName(String sname, String fname, String oname,String email)
+    {
+        var name = sname + ' '+ fname + ' '+oname;
+        return usersRepository.UpdateUsersName(name,sname,fname,oname, email);
+    }
+    public int UpdateUsersInfo(String appt,Boolean pad, String usr, Boolean adm, String frm, Boolean comp,
+                               String mat, String appn, Boolean sta, Boolean isact, String email)
+    {
+        return usersRepository.UpdateUsersInfo(appt,pad,usr,adm,frm, comp, mat, appn,sta,isact, email);
+    }
     private UserApptypeJoinReponses mapToReportRegResponse(UserApptypeJoinRequest res){
         return UserApptypeJoinReponses.builder()
                 .id(res.getId())

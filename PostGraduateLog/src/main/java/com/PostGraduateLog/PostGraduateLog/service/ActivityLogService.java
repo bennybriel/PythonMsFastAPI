@@ -1,6 +1,6 @@
 package com.PostGraduateLog.PostGraduateLog.service;
 
-import com.PostGraduateLog.PostGraduateLog.dto.ActivityLogResponse;
+import com.PostGraduateLog.PostGraduateLog.reponses.ActivityLogResponse;
 import com.PostGraduateLog.PostGraduateLog.dto.ActivityRequest;
 import com.PostGraduateLog.PostGraduateLog.model.ActivityLog;
 import com.PostGraduateLog.PostGraduateLog.repository.ActivityLogRepository;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service

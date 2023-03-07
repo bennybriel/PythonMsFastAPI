@@ -1,10 +1,9 @@
-package com.PostGraduateLog.PostGraduateLog.dto;
+package com.PostGraduateLog.PostGraduateLog.reponses;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.tuple.entity.EntityBasedAssociationAttribute;
 
 import java.time.LocalDateTime;
 
@@ -12,17 +11,13 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserApptypeJoinReponses
-{
+public class RegistrationResponse {
     private long id;
-    private String apptype;
-    private String formnumber;
-    private String appnumber;
-    private String usertype;
     private String matricno;
     private String surname;
     private String firstname;
     private String othername;
+    private String email;
     private String state;
     private String lga;
     private String guid;
@@ -31,7 +26,6 @@ public class UserApptypeJoinReponses
     private String changeprogramme;
     private String utme;
     private String phone;
-    private String activesession;
     private LocalDateTime dob;
     private String category1;
     private String category2;
@@ -40,7 +34,6 @@ public class UserApptypeJoinReponses
     private String maritalstatus;
     private String address;
     private String photo;
-    private String email;
     private String religion;
     private String faculty;
     private String department;
@@ -56,32 +49,11 @@ public class UserApptypeJoinReponses
     private String sphone;
     private String semail;
     private String admissionyear;
-    private String admissiotype;
+    private String admissiontype;
     private Integer programmeid;
     private Integer departmentid;
     private Integer level;
     private Boolean status;
-    private  Boolean ispaid;
-    private Boolean isactive;
-    private Boolean ischange;
-    private Boolean isadmitted;
-    private Boolean iscomplete;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
-
-    public UserApptypeJoinReponses(String matric, String matricno, String utme, String email, String lga, String state)
-    {
-        this.matric = matric;
-        this.matricno = matricno;
-        this.utme = utme;
-        this.email = email;
-        this.lga = lga;
-        this.state = state;
-    }
-    @Override
-    public String toString() {
-        return "UserApptypeJoinReponses [matric=" + matric + ", matricno=" + matricno + ", utme=" + utme + ", email="
-                + email + ",  lga=" + lga +", state=" + state +"]";
-    }
-
 }

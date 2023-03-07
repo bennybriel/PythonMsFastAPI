@@ -1,4 +1,4 @@
-package com.PostGraduateLog.PostGraduateLog.repository;
+package com.PostGraduateLog.PostGraduateLog.interfaces;
 
 import com.PostGraduateLog.PostGraduateLog.model.Users;
 public interface UserDisplayInterface {
