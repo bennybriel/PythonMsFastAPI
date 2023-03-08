@@ -21,8 +21,6 @@ public class Users {
 
     @Id
     @GeneratedValue
-//    @JoinColumn(name = "matricno", referencedColumnName = "matricno")
-//    private Set<u_g_pre_admission_regsEntity> preAdmission;
     private long id;
     private String matricno;
     private String apptype;

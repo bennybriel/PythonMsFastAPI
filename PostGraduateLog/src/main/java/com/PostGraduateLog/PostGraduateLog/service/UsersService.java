@@ -91,7 +91,7 @@ public class UsersService {
         }
         else
         {
-            pageable = PageRequest.of(pageNumber, pageSize);
+            pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC, "apptype");
         }
         return usersRepository.findAll(pageable);
     }

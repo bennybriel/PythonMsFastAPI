@@ -6,28 +6,28 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TransactionResponse {
-    private Long id;
-    private String guid;
+public class TransactionsResponse {
+    private long id;
+    private Integer productID;
     private String matricno;
     private String description;
     private String response;
-    private String transactionid;
+    private String transactionID;
+    private Double amount;
     private String apptype;
     private String session;
-    private String referenceid;
+    private String referenceID;
     private String trans_id;
     private String url;
     private String paymenttype;
-    private Integer productid;
-    private Double amount;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    private String guid;
     private Boolean ispaid;
     private Boolean status;
+    private LocalDateTime updated_at;
+    private LocalDateTime create_at;
+
 }

@@ -17,10 +17,7 @@ import java.util.List;
 public interface ReqistrationRepository extends JpaRepository<Registrations, String> {
     Registrations findByEmail(String email);
 
-
     List<Registrations> findByAdmissiontype(String admtype);
-
-
 
     @Query(value = "SELECT rg.*, pg.programme, pg.degree FROM u_g_pre_admission_regs rg INNER JOIN pgprogramme pg ON rg.category1 = pg.programmeid WHERE rg.admissiontype=:admtype", nativeQuery = true)
     List<RegistrationDisplayInterface> fetchRegistrationByAdmissionType(@Param("admtype") String admtype);
